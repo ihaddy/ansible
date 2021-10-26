@@ -1,0 +1,19 @@
+--- 
+ hosts: all
+ roles: 
+  -role: elastic.beats
+ vars: 
+  beat: filebeat
+  beat_conf: 
+    filebeat: 
+      inputs: 
+        - 
+          enabled: true
+          paths: 
+            - /var/log/*.log
+          type: log
+    output_conf: 
+      elasticsearch: 
+        hosts: 
+          - "192.168.1.232:9200"
+  beats_version: "7.12.0"
